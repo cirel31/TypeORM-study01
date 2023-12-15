@@ -18,16 +18,16 @@ export class AppController {
   getUsers() {
     return this.userRepository.find();
   }
-  @Patch('users/:id')
-  async patchUser(@Param('id') id: string) {
-    const user = await this.userRepository.findOne({
-      where: {
-        id: parseInt(id),
-      },
-    });
-    return this.userRepository.save({
-      ...user,
-      title: user.title + '0',
-    });
-  }
+  // @Patch('users/:id')
+  // async patchUser(@Param('id') id: string) {
+  //   const user = await this.userRepository.findOne({
+  //     where: {
+  //       id: parseInt(id),
+  //     },
+  //   });
+  //   return this.userRepository.save({
+  //     ...user,
+  //     title: user.title + '0',
+  //   });
+  // }
 }

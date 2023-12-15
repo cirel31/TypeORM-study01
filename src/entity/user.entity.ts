@@ -8,6 +8,11 @@ import {
   VersionColumn,
 } from 'typeorm';
 
+export enum Role {
+  USER = 'user',
+  ADMIN = 'admin',
+}
+
 @Entity()
 export class UserModel {
   @PrimaryGeneratedColumn('uuid')
@@ -38,6 +43,14 @@ export class UserModel {
     unique: false,
   })
   title: string;
+
+  @Column({
+    // enum은 특정 값으로 제한을 두고 싶을 때 사용
+    type: 'enum',
+    enum: Role,
+    default: Role.USER,
+  })
+  role: Role;
 
   @CreateDateColumn()
   createdAt: Date;
