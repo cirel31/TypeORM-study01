@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModel } from './entity/user.entity';
+import { StudentModel } from './entity/persion.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserModel]),
@@ -13,7 +14,7 @@ import { UserModel } from './entity/user.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'typeormstudy',
-      entities: [UserModel],
+      entities: [UserModel, StudentModel],
       synchronize: true,
     }),
   ],
