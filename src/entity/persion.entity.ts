@@ -1,4 +1,4 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export class Name {
   @Column()
@@ -7,6 +7,8 @@ export class Name {
   @Column()
   last: string;
 }
+
+@Entity()
 export class StudentModel {
   @PrimaryGeneratedColumn()
   id: number;

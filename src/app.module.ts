@@ -4,6 +4,13 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModel } from './entity/user.entity';
 import { StudentModel } from './entity/persion.entity';
+import {
+  AirplainModel,
+  BookModel,
+  CarModel,
+  ComputerModel,
+  SingleBaseModel,
+} from './entity/inheritance.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserModel]),
@@ -14,7 +21,15 @@ import { StudentModel } from './entity/persion.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'typeormstudy',
-      entities: [UserModel, StudentModel],
+      entities: [
+        UserModel,
+        StudentModel,
+        BookModel,
+        CarModel,
+        SingleBaseModel,
+        ComputerModel,
+        AirplainModel,
+      ],
       synchronize: true,
     }),
   ],
