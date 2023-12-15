@@ -13,9 +13,10 @@ import {
 } from './entity/inheritance.entity';
 import { ProfileModel } from './entity/profile.entity';
 import { PostModel } from './entity/post.entity';
+import { TagModel } from './entity/tag.entity';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserModel, ProfileModel, PostModel]),
+    TypeOrmModule.forFeature([UserModel, ProfileModel, PostModel, TagModel]),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: '127.0.0.1',
@@ -33,6 +34,7 @@ import { PostModel } from './entity/post.entity';
         AirplainModel,
         ProfileModel,
         PostModel,
+        TagModel,
       ],
       synchronize: true,
     }),
