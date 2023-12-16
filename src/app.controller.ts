@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserModel } from './entity/user.entity';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 import { ProfileModel } from './entity/profile.entity';
 import { PostModel } from './entity/post.entity';
 import { TagModel } from './entity/tag.entity';
@@ -19,18 +19,34 @@ export class AppController {
     private readonly tagRepository: Repository<TagModel>,
   ) {}
   @Post('users')
-  postUser() {
-    return this.userRepository.save({});
+  async postUser() {
+    // return this.userRepository.save({});
+    for (let i = 0; i < 100; i++) {
+      await this.userRepository.save({
+        email: `user-${i}@ssafy.com`,
+      });
+    }
   }
   @Get('users')
   getUsers() {
     return this.userRepository.find({
+      where: {
+        // id가 1이 아닌 경우 가져오기
+        id: Not(1),
+        // LessThan, MoreThan, MoreThanOrEqual, Equal 등으로 범위 필터링 가능
+        // 유사값
+        // email: Like('%ssafy%'),
+        // 대소문자 구분 없는 유사값
+        // email: ILike('%SSAFY%'),
+        // null인 프로퍼티 필터링
+        // id: IsNull(),
+      },
       // 어떤 프로퍼티를 선택할지
       // select 미정의 >> 기본적으로 모든 프로퍼티를 가져온다.
       // 내부에 프로퍼티를 정의해서 원하는 프로퍼티만 가져올 수 있다.
-      select: {
-        id: true,
-      },
+      // select: {
+      //   id: true,
+      // },
       // where >> 필터링 할 조건을 입력
       // 내부에 프로퍼티를 정의해서 해당 정의에 해당되는 프로퍼티를 필터링한다.
       // where 를 {} 로 정의하고 내부에 프로퍼티를 정의하면 and로 실행
@@ -38,14 +54,14 @@ export class AppController {
       //   version: 1,
       // },
       // where 를  [] 로 선언하고 별개의 {} 으로 구분하면 or 로 필터링
-      where: [
-        {
-          version: 1,
-        },
-        {
-          id: 2,
-        },
-      ],
+      // where: [
+      //   {
+      //     version: 1,
+      //   },
+      //   {
+      //     id: 2,
+      //   },
+      // ],
       // order >> 정렬, 오름차순 >> ASC, 내림차순 >> DESC
       order: {
         id: 'ASC',
