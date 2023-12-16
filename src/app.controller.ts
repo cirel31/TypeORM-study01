@@ -154,4 +154,18 @@ export class AppController {
   async deleteProfile(@Param('id') id: string) {
     await this.profileRepository.delete(+id);
   }
+
+  @Post('sample')
+  async sample() {
+    // create >> 모델 객체 생성, 저장은 안함
+    // save >> 모델 객체 저장
+    // preload >> 입력된 값을 기반으로 DB 데이터를 불러오고 추가 입력된 값으로 DB 값을 대체, 저장하지는 않음
+    // delete >> 입력된 값을 통해서 자료 삭제
+    // increment({id: 1}, 'count', 2) >> 입력 조건에 해당되는 (id ==1) 모든 row에 대해서 프로퍼티 (count)의 값을 증가 (+2)
+    // decrement >> 증가와 로직 동일
+    // count >> 지정한 조건의 갯수 카운트
+    // sum >> 지정한 조건의 프로퍼티 더하기
+    // minimum >> 조건 프로퍼티의 최소값
+    // maximum >> 최댓값
+  }
 }
